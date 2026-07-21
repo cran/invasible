@@ -1,0 +1,15 @@
+21657d2c225e6c99f590b979b4d9528d *DESCRIPTION
+96dfe766b3360cb62b478dc04bcc2e28 *NAMESPACE
+aa8111f2f19d0c9bc7a647b2b99f2253 *R/fish_beginning_with_E.R
+eae2ad5d35d6978115741da5562251e9 *R/globals.R
+0323d0348d036f33644cb5d3f790ad4b *R/helper_functions.R
+324646091f5484bdd64a2d7724415360 *R/invasion_signal.R
+a68933ab2e4a5f2c230e0b779d171bb9 *R/monitor_species.R
+e1d1e18200463b16edf625ef7b172a2a *R/predict_invasible.R
+8dbbe52f368a929bae0cd3e06a485001 *R/prepare_invasible.R
+29ec2b6d077cd8e46195bf398628f8b0 *data/fish_beginning_with_E.rda
+7649a7e6dd54145c51caf11d070f682b *man/fish_beginning_with_E.Rd
+e8ec3a1895c4a7752c194fb02cec468a *man/invasion_signal.Rd
+e23b85177a7e2ba1855ef1e402a2e339 *man/monitor_species.Rd
+a6ecdc24727ed47738950491415d7d95 *man/predict_invasible.Rd
+ae606e7c22b78dad32a6dea46236e247 *man/prepare_invasible.Rd
