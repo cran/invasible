@@ -12,6 +12,7 @@
 #' @param signal Output of \code{invasion_signal()}
 #' @param plot Logical. If TRUE, returns diagnostic plot of observed vs predicted
 #' @param vcv_alpha Numeric, optional: set a value of alpha for OU model which is
+#' @param fam Character, Distribution family of the model (if other than "binomial")
 #' different to the value inherited from the \code{invasion_signal()} output
 #'
 #' @return An object of class \code{pred_output}, a list containing:
@@ -34,7 +35,7 @@
 #' pred$plot
 #'
 #' @export
-predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE) {
+predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE,fam="binomial") {
 
   if (!inherits(signal, "invasible_signal")) {
     stop("Input must be from invasion_signal().")
@@ -69,7 +70,8 @@ predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE) {
     V <- phytools::vcvPhylo(tree, model = "OU", alpha = signal$alpha)
   } else {
     V <- phytools::vcvPhylo(tree, model = "OU", alpha = vcv_alpha)
-    }
+  }
+  fam <- fam
   # ---------------------------
   # formula construction
   # ---------------------------
@@ -90,7 +92,7 @@ predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE) {
   fit <- phyr::pglmm(
     formula = fml,
     data = df,
-    family = "gaussian",
+    family = fam,
     cov_ranef = list(Species = V),
     REML = FALSE
   )

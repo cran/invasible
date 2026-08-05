@@ -1,7 +1,7 @@
 Package: invasible
 Title: Predicting Invasion Probabilities from Phylogenetic Data and
         Species Traits
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Shahar", "Dubiner", email="dubiner@mail.tau.ac.il", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-1771-0087"))
@@ -17,11 +17,11 @@ Imports: ape, caper, ggplot2, phylolm, phyr, phytools, pROC, rotl,
         stats
 RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2026-07-12 00:14:38 UTC; shadu
+Packaged: 2026-08-02 08:57:44 UTC; shadu
 Author: Shahar Dubiner [aut, cre] (ORCID:
     <https://orcid.org/0000-0003-1771-0087>)
 Maintainer: Shahar Dubiner <dubiner@mail.tau.ac.il>
 Depends: R (>= 3.5)
 LazyData: true
 Repository: CRAN
-Date/Publication: 2026-07-21 10:30:30 UTC
+Date/Publication: 2026-08-05 08:20:12 UTC

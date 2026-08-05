@@ -43,7 +43,7 @@ and also recommend fully matching the species in the data and phylogeny.
 }
 \examples{
 species_list <- fish_beginning_with_E
-prep <- prepare_invasible(species_list,rho=1,plot=TRUE, predictors=
+prep <- prepare_invasible(species_list,rho=1,predictors=
         c("Fake_categorical_trait","Fake_continuous_trait"))
 prep$tree
 
