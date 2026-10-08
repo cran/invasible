@@ -14,22 +14,33 @@ prepare_invasible(
 )
 }
 \arguments{
-\item{df}{Data frame containing at least a \code{Species} column formatted as
-"Genus_species", and an \code{Invasive} column (0: not invasive, 1: invasive).}
+\item{df}{Data frame containing at least a \code{Species} column formatted
+as "Genus_species", and an \code{Invasive} column (0: not invasive,
+1: invasive).}
 
-\item{tree}{Optional object of class \code{"phylo"}.}
+\item{tree}{Optional object of class \code{"phylo"}. If \code{NULL},
+a phylogeny is retrieved from the Open Tree of Life.}
 
-\item{predictors}{Optional character vector of column names (additional
-predictors beyond phylogeny; if NULL, models will be based on the tree alone).}
+\item{predictors}{Optional character vector of column names containing
+additional predictors. If \code{NULL}, no additional predictors are
+stored.}
 
-\item{species_col}{Name of species column (default "Species" is recommended).}
+\item{species_col}{Character string giving the name of the species column.
+Defaults to \code{"Species"}.}
 
-\item{rho}{Grafen branch length scaling parameter (default 0.5).}
+\item{rho}{Numeric value controlling the power parameter used for Grafen
+branch lengths. Defaults to \code{0.5}.}
 
-\item{plot}{Logical. If TRUE, visualizes the phylogeny in \code{tree}.}
+\item{plot}{Logical. If \code{TRUE}, plots the resulting phylogeny as a
+fan tree using \pkg{phytools}.}
 }
 \value{
-An object of class \code{"invasible_prepared"}.
+An object of class \code{"invasible_prepared"} containing:
+\itemize{
+\item \code{data}: the aligned data frame;
+\item \code{tree}: the aligned phylogeny;
+\item \code{predictors}: the supplied predictor names.
+}
 }
 \description{
 Aligns species-level invasion data with a phylogeny and stores
@@ -37,14 +48,29 @@ predictor information for downstream analyses.
 }
 \details{
 If no phylogeny is supplied, a tree is retrieved from the Open Tree
-of Life using \pkg{rotl}; Grafen branch lengths are added if branch
-lengths are absent. We recommend providing a high-quality tree if available,
-and also recommend fully matching the species in the data and phylogeny.
+of Life using \pkg{rotl}. Unmatched species names are removed with a
+warning. When multiple submitted names resolve to the same Open Tree
+taxon, the first occurrence is retained and subsequent occurrences
+are removed with a warning.
+
+If a supplied phylogeny has species that are absent from the data,
+those tips are removed. Species present in the data but absent from
+the phylogeny are removed from the data with a warning.
+
+If branch lengths are absent, Grafen branch lengths are added.
 }
 \examples{
-species_list <- fish_beginning_with_E
-prep <- prepare_invasible(species_list,rho=1,predictors=
-        c("Fake_categorical_trait","Fake_continuous_trait"))
+\dontrun{
+prep <- prepare_invasible(
+  fish_beginning_with_E,
+  rho = 1,
+  predictors = c(
+    "Fake_categorical_trait",
+    "Fake_continuous_trait"
+  )
+)
+
 prep$tree
+}
 
 }

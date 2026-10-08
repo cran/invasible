@@ -56,8 +56,8 @@ invasion_signal <- function(prepared) {
 
   phylo_fit <- phylolm::phyloglm(
     formula = fml,
-    data = df,
-    phy = tree,
+    data = comp$data,
+    phy = comp$phy,
     method = "logistic_MPLE"
   )
 

@@ -5,7 +5,8 @@ utils::globalVariables(
     "Predicted",
     "Probability",
     "Species_set",
-    "n"
+    "n",
+    "plogis"
   )
 )
 

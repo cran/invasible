@@ -4,17 +4,17 @@
 \alias{predict_invasible}
 \title{Predict invasion risk and evaluate model performance}
 \usage{
-predict_invasible(signal, vcv_alpha = NULL, plot = FALSE, fam = "binomial")
+predict_invasible(signal, vcv_alpha = NULL, plot = FALSE, fam = "gaussian")
 }
 \arguments{
 \item{signal}{Output of \code{invasion_signal()}}
 
-\item{vcv_alpha}{Numeric, optional: set a value of alpha for OU model which is}
+\item{vcv_alpha}{Numeric, optional: set a value of alpha for OU model which is
+different to the value inherited from the \code{invasion_signal()} output}
 
 \item{plot}{Logical. If TRUE, returns diagnostic plot of observed vs predicted}
 
-\item{fam}{Character, Distribution family of the model (if other than "binomial")
-different to the value inherited from the \code{invasion_signal()} output}
+\item{fam}{Character, Distribution family of the model (if other than "binomial")}
 }
 \value{
 An object of class \code{pred_output}, a list containing:

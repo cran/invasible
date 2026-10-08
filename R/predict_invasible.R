@@ -12,8 +12,8 @@
 #' @param signal Output of \code{invasion_signal()}
 #' @param plot Logical. If TRUE, returns diagnostic plot of observed vs predicted
 #' @param vcv_alpha Numeric, optional: set a value of alpha for OU model which is
+#'  different to the value inherited from the \code{invasion_signal()} output
 #' @param fam Character, Distribution family of the model (if other than "binomial")
-#' different to the value inherited from the \code{invasion_signal()} output
 #'
 #' @return An object of class \code{pred_output}, a list containing:
 #' \describe{
@@ -35,7 +35,7 @@
 #' pred$plot
 #'
 #' @export
-predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE,fam="binomial") {
+predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE,fam="gaussian") {
 
   if (!inherits(signal, "invasible_signal")) {
     stop("Input must be from invasion_signal().")
@@ -98,7 +98,11 @@ predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE,fam="binomial") {
   )
 
   preds <- phyr::pglmm_predicted_values(fit)
-
+  
+  if (fam=="binomial") {
+    preds$Y_hat <- plogis(preds$Y_hat)
+  }
+  
   pred_df <- data.frame(
     Species = df$Species,
     Observed = df$Invasive,
@@ -145,11 +149,12 @@ predict_invasible <- function(signal,vcv_alpha=NULL,plot=FALSE,fam="binomial") {
       ggplot2::stat_summary(
         fun = mean,
         geom = "point",
-        size = 3
+        color=c("royalblue3", "firebrick3"), size = 3
       ) +
       ggplot2::stat_summary(
         fun.data = ggplot2::mean_sdl,
         fun.args = list(mult = 1),
+        color=c("royalblue3", "firebrick3"),
         geom = "errorbar",
         width = 0.75
       ) +
